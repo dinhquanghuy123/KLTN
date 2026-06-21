@@ -10,7 +10,6 @@
 
 db.sqlite3
 *.log
-media/
 staticfiles/
 
 # ===== ENV =====
