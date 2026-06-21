@@ -9,7 +9,7 @@
 # ===== DJANGO =====
 
 db.sqlite3
-*.log
+*.loggit add .
 staticfiles/
 
 # ===== ENV =====
