@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load money %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero text-white text-center mb-4">
+    <div class="overlay">
+        <h1 class="fw-bold">Khám phá tour du lịch Việt Nam</h1>
+        <p>Đặt tour dễ dàng - Giá tốt mỗi ngày</p>
+    </div>
+</section>
+
+<!-- Search -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+
+            <div class="col-md-4">
+                <input type="text"
+                       name="q"
+                       value="{{ request.GET.q }}"
+                       class="form-control"
+                       placeholder="Tìm tour...">
+            </div>
+
+            <div class="col-md-3">
+                <select name="destination" class="form-select">
+                    <option value="">Tất cả địa điểm</option>
+                    {% for destination in destinations %}
+                        <option value="{{ destination }}"
+                            {% if request.GET.destination == destination %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ destination }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select name="sort" class="form-select">
+                    <option value="">Mặc định</option>
+                    <option value="low">Giá thấp đến cao</option>
+                    <option value="high">Giá cao đến thấp</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-warning w-100">
+                    Lọc
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Title -->
+<h2 class="fw-bold mb-4 border-start ps-3" style="border-color:#0d6efd;">
+    Danh sách Tour
+</h2>
+
+<!-- Tours -->
+{% if tours %}
+    <div class="row g-4 justify-content-center">
+
+        {% for tour in tours %}
+        
+            <div class="col-md-6 col-lg-4">
+                {% include "components/tour_card.html" with tour=tour %}
+            </div>
+
+        {% endfor %}
+
+    </div>
+{% else %}
+    <div class="alert alert-warning text-center">
+        Không tìm thấy tour phù hợp 😢
+    </div>
+{% endif %}
+
+{% include "components/pagination.html" with page_obj=tours %}
+
+{% endblock %}

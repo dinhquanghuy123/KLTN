@@ -1,0 +1,55 @@
+# ===== PYTHON =====
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# ===== DJANGO =====
+
+db.sqlite3
+*.log
+media/
+staticfiles/
+
+# ===== ENV =====
+
+.env
+.venv/
+venv/
+env/
+
+# ===== IDE =====
+
+.vscode/
+.idea/
+
+# ===== OS =====
+
+.DS_Store
+Thumbs.db
+
+# ===== MIGRATIONS (optional) =====
+
+# migrations/
+
+# !*/migrations/**init**.py
+
+# ===== TEST / CACHE =====
+
+.cache/
+.pytest_cache/
+
+# ===== FILE UPLOADS =====
+
+*.jpg
+*.png
+*.jpeg
+*.gif
+*.webp
+
+# ===== OTHER =====
+
+*.bak
+*.swp

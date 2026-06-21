@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card profile-card shadow">
+
+            <div class="card-body">
+
+                <h3 class="mb-4">
+                    Hồ sơ cá nhân
+                </h3>
+
+                <p>
+                    <strong>Username:</strong>
+                    {{ request.user.username }}
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    {{ request.user.email }}
+                </p>
+
+                <hr>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label>Số điện thoại</label>
+                        {{ form.phone }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Địa chỉ</label>
+                        {{ form.address }}
+                    </div>
+
+                    <button class="btn btn-primary">
+                        Cập nhật
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

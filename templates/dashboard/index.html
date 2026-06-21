@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load money %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h2 class="fw-bold mb-4 border-start ps-3" style="border-color:#0d6efd;">
+    Dashboard
+</h2>
+
+<!-- STATS -->
+<div class="row g-4 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 stat-card text-center p-3">
+            <h6 class="text-muted">Tours</h6>
+            <h2 class="fw-bold text-primary">{{ total_tours }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 stat-card text-center p-3">
+            <h6 class="text-muted">Users</h6>
+            <h2 class="fw-bold text-secondary">{{ total_users }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 stat-card text-center p-3">
+            <h6 class="text-muted">Bookings</h6>
+            <h2 class="fw-bold text-warning">{{ total_bookings }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 stat-card text-center p-3">
+            <h6 class="text-muted">Revenue</h6>
+            <h2 class="fw-bold text-success">
+                {{ total_revenue|money }}
+            </h2>
+        </div>
+    </div>
+
+</div>
+
+<!-- CHART + TOP -->
+<div class="row g-4 mb-4">
+
+    <!-- CHART -->
+    <div class="col-md-7">
+        <div class="card shadow-sm border-0 p-3" style="height:350px;">
+            <h6 class="fw-bold mb-2">📊 Booking theo tháng</h6>
+            <canvas id="bookingChart"></canvas>
+        </div>
+    </div>
+
+    <!-- TOP TOUR -->
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0 p-3 h-100">
+            <h6 class="fw-bold mb-3">🔥 Top tour</h6>
+
+            <ul class="list-group list-group-flush">
+                {% for t in top_tours %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>{{ t.tour__name }}</span>
+                    <span class="badge bg-primary">
+                        {{ t.total }}
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- RECENT BOOKINGS -->
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+
+        <h5 class="fw-bold mb-3">📋 Booking gần nhất</h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>User</th>
+                        <th>Tour</th>
+                        <th>Giá</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for b in recent_bookings %}
+                    <tr>
+                        <td>{{ b.user.username }}</td>
+                        <td>{{ b.tour.name }}</td>
+
+                        <td class="text-danger fw-bold">
+                            {{ b.total_price|money }}
+                        </td>
+
+                        <td>
+                            {% if b.status == 'pending' %}
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            {% elif b.status == 'confirmed' %}
+                                <span class="badge bg-success">Confirmed</span>
+                            {% elif b.status == 'cancelled' %}
+                                <span class="badge bg-danger">Cancelled</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ b.booked_at|date:"d/m/Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!-- CHART JS -->
+<script>
+window.addEventListener('load', function() {
+
+    const labels = [
+        {% for item in booking_chart %}
+            "{{ item.month|date:'m/Y' }}",
+        {% endfor %}
+    ];
+
+    const dataValues = [
+        {% for item in booking_chart %}
+            {{ item.total }},
+        {% endfor %}
+    ];
+
+    new Chart(document.getElementById('bookingChart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Booking',
+                data: dataValues,
+                backgroundColor: 'rgba(13,110,253,0.5)',
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+});
+</script>
+
+{% endblock %}

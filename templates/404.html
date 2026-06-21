@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex flex-column justify-content-center align-items-center text-center"
+     style="min-height:70vh;">
+
+    <!-- ICON -->
+    <div class="mb-4">
+        <h1 class="display-1 fw-bold text-primary">404</h1>
+    </div>
+
+    <!-- MESSAGE -->
+    <h3 class="fw-bold mb-2">
+        Oops! Trang không tồn tại
+    </h3>
+
+    <p class="text-muted mb-4">
+        Có thể bạn đã nhập sai đường dẫn hoặc trang đã bị xóa.
+    </p>
+
+    <!-- BUTTON -->
+    <a href="/" class="btn btn-primary px-4">
+        ← Về trang chủ
+    </a>
+
+</div>
+
+{% endblock %}

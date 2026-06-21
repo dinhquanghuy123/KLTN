@@ -1,0 +1,384 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff !important;
+}
+
+.navbar {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.navbar .nav-link {
+    transition: 0.2s;
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.navbar .nav-link.active {
+    color: #ffd43b !important;
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover {
+    color: #ffd43b !important;
+    transform: translateY(-1px);
+}
+
+/* Hero */
+.hero {
+    background: url('/media/banner/banner.png') center/cover no-repeat;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .overlay {
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.3));
+    padding: 35px;
+    border-radius: 15px;
+    backdrop-filter: blur(2px);
+}
+
+/* Title */
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-left: 4px solid #0d6efd;
+    padding-left: 10px;
+}
+
+/* Card Tour */
+.tour-card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tour-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+}
+
+.tour-card img {
+    transition: transform 0.4s ease;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.tour-card:hover img {
+    transform: scale(1.05);
+}
+
+/* ===== WISHLIST BUTTON ===== */
+
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 20;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.1);
+    background: #fff;
+}
+
+/* ICON */
+
+.heart {
+    font-size: 18px;
+    color: #555;
+    transition: all 0.25s ease;
+}
+
+/* ACTIVE */
+
+.heart.active {
+    color: #ff4d6d;
+    transform: scale(1.2);
+}
+
+/* CLICK ANIMATION */
+
+.wishlist-btn:active .heart {
+    transform: scale(1.4);
+}
+
+/* Price */
+.text-danger {
+    font-size: 22px;
+}
+
+/* Search box */
+
+.card {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-control,
+.form-select {
+    height: 48px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2);
+}
+
+/* button */
+
+.btn {
+    height: 48px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Footer */
+footer {
+    margin-top: 60px;
+    font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .hero {
+        min-height: 220px;
+        padding: 30px 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .tour-card img {
+        height: 220px !important;
+    }
+}
+
+/* Pagination */
+
+.pagination {
+    margin-top: 30px;
+}
+
+.pagination .page-link {
+    padding: 8px 14px;
+    font-weight: 500;
+}
+
+.pagination .active .page-link {
+    background: #0d6efd;
+    border-radius: 10px;
+}
+
+/* DETAIL PAGE */
+.tour-detail-img {
+    height: 420px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* REVIEW */
+.review-item {
+    border-bottom: 1px solid #eee;
+}
+
+/* BOOKING BOX */
+.booking-box {
+    position: sticky;
+    top: 100px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: #fff;
+}
+
+/* BOOKING PAGE */
+.booking-img {
+    height: 280px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.booking-info {
+    border-radius: 16px;
+}
+
+/* BOOKING CARD */
+.booking-card {
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.booking-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* LOGIN */
+.login-card {
+    border-radius: 16px;
+}
+
+.login-card input {
+    height: 45px;
+    border-radius: 8px;
+}
+
+.login-card input:focus {
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2);
+}
+
+/* REGISTER */
+.register-card {
+    border-radius: 16px;
+}
+
+.register-card input {
+    height: 45px;
+    border-radius: 8px;
+}
+
+.register-card input:focus {
+    box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.2);
+}
+
+/* PROFILE */
+.profile-card {
+    border-radius: 16px;
+}
+
+/* AVATAR */
+.avatar-circle {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #0d6efd, #4dabf7);
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 404 PAGE */
+.display-1 {
+    font-size: 100px;
+}
+
+.btn-primary {
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+/* ERROR PAGE */
+.display-1 {
+    font-size: 100px;
+}
+
+.btn {
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ADMIN TABLE */
+.table th {
+    font-weight: 600;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f5ff;
+}
+
+/* DASHBOARD */
+.stat-card {
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+}
+
+/*FEATURED*/
+.featured-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    z-index: 25;
+
+    background: rgba(255, 193, 7, 0.95);
+    color: #212529;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}

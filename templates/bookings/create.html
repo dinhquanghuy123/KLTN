@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load money %}
+
+{% block title %}Đặt Tour - TravelVN{% endblock %}
+
+{% block content %}
+
+<div class="row g-4">
+
+    <!-- LEFT -->
+    <div class="col-md-7">
+
+        <div class="card shadow-sm border-0 booking-info">
+            <div class="card-body">
+
+                <h2 class="fw-bold mb-3">{{ tour.name }}</h2>
+
+                <p class="text-muted mb-3">
+                    📍 {{ tour.destination }}
+                </p>
+
+                {% if tour.image %}
+                <img src="{{ tour.image.url }}"
+                     class="img-fluid rounded mb-4 w-100 booking-img">
+                {% endif %}
+
+                <!-- INFO GRID -->
+                <div class="row text-center">
+
+                    <div class="col">
+                        <div class="fw-bold fs-5">{{ tour.duration }}</div>
+                        <small class="text-muted">Ngày</small>
+                    </div>
+
+                    <div class="col">
+                        <div class="fw-bold fs-5">{{ tour.slots }}</div>
+                        <small class="text-muted">Chỗ trống</small>
+                    </div>
+
+                    <div class="col">
+                        <div class="fw-bold fs-5 text-danger">
+                            {{ tour.price|money }}
+                        </div>
+                        <small class="text-muted">Giá/người</small>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col-md-5">
+
+        <div class="card shadow border-0 sticky-top booking-box">
+            <div class="card-body">
+
+                <h4 class="fw-bold mb-3 text-center">
+                    Xác nhận đặt tour
+                </h4>
+
+                <!-- PRICE -->
+                <h3 class="text-danger fw-bold text-center mb-3">
+                    {{ tour.price|money }}
+                </h3>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- QUANTITY -->
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Số lượng người
+                        </label>
+
+                        <input type="number"
+                               name="quantity"
+                               min="1"
+                               max="{{ tour.slots }}"
+                               value="1"
+                               class="form-control text-center">
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                        Mã giảm giá
+                        </label>
+
+                        <input type="text"
+                            name="coupon"
+                            class="form-control"
+                            placeholder="Ví dụ: SUMMER20">
+
+                    </div>
+
+                    <!-- ERROR -->
+                    {% if error %}
+                    <div class="alert alert-danger text-center">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+
+                    <!-- BUTTON -->
+                    {% if tour.slots > 0 %}
+                    <button type="submit"
+                            class="btn btn-warning w-100">
+                        Xác nhận đặt
+                    </button>
+                    {% else %}
+                    <button class="btn btn-secondary w-100" disabled>
+                        Hết chỗ
+                    </button>
+                    {% endif %}
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
